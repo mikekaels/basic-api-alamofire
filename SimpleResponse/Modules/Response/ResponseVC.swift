@@ -216,9 +216,8 @@ class ResponseVC: UIViewController {
             
             var users: [ListUser] = [ListUser]()
             users.append(contentsOf: inventory.listUser ?? [])
-            for _ in 1...10 {
-                users.insert(ListUser(fullname: inventory.fullname, colorBackgroud: inventory.colorBackgroud, colorText: inventory.colorText), at: 0)
-            }
+            
+            users.insert(ListUser(fullname: inventory.fullname, colorBackgroud: inventory.colorBackgroud, colorText: inventory.colorText), at: 0)
             
             self?.lblPersonAmount.text = String(users.count) + " " + "Anggota"
             self?.lblLocation.text = inventory.location
