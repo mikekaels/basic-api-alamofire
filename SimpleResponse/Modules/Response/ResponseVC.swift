@@ -48,7 +48,7 @@ class ResponseVC: UIViewController {
         .configure { v in
             v.backgroundColor = Colors.white
             v.layer.cornerRadius = 10
-//            v.dropShadow()
+            v.dropShadow()
         }
     
     private let vChip = UIView()
@@ -214,15 +214,18 @@ class ResponseVC: UIViewController {
                 self?.lblMessage.text = "Data group yang anda miliki belum sesuai dengan ketentuan"
             }
             
-            var users: [ListUser] = inventory.listUser!
-            users.insert(ListUser(fullname: inventory.fullname, colorBackgroud: inventory.colorBackgroud, colorText: inventory.colorText), at: 0)
+            var users: [ListUser] = [ListUser]()
+            users.append(contentsOf: inventory.listUser ?? [])
+            for _ in 1...10 {
+                users.insert(ListUser(fullname: inventory.fullname, colorBackgroud: inventory.colorBackgroud, colorText: inventory.colorText), at: 0)
+            }
+            
             self?.lblPersonAmount.text = String(users.count) + " " + "Anggota"
             self?.lblLocation.text = inventory.location
             self?.lblTotalData.text = "Total data:" + " " + String(users.count) + " / " + "1000"
             self?.lblDate.text = inventory.time?.formatDateAndTime().0
             self?.lblTime.text = inventory.time?.formatDateAndTime().1
             self?.table.items = users
-            
         }
     }
 
